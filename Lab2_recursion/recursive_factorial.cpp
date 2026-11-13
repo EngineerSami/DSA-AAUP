@@ -16,9 +16,9 @@ long long factrec(long long n) {
 }
 
 int main() {
-    for (long long n = 0; n <= 100000; n++) {
+    for (long long n = 0; n <= 15; n++) {
         cout << n << "! = " << factrec(n);
-        //cout << "loop: " << factiter(n) << " for n = " << n;
+        cout << "loop: " << factiter(n) << " for n = " << n;
         cout << endl;
     }
     return 0;
