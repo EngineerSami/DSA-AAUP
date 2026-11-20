@@ -4,14 +4,14 @@ using namespace std;
 
 long long ops = 0;
 
-long long sumToRec(int n){
+long long facToRec(int n){
     if (n==0) return 1;
     ops++;
-    return n * sumToRec(n-1);
+    return n * facToRec(n-1);
     
 }
 
-long long sumToIter(int n){
+long long facToIter(int n){
     long long total = 1;
     for (int i = 1; i <= n; i++)
     {
@@ -29,11 +29,11 @@ int main() {
     cout<<endl;
 
     ops=0;
-    long long s1=sumToRec(n);
+    long long s1=facToRec(n);
     cout<<s1<<" "<<n<<endl;
 
     ops=0;
-    long long s2=sumToIter(n);
+    long long s2=facToIter(n);
     cout<<s2<<" "<<n<<endl;
     return 0;
 }
