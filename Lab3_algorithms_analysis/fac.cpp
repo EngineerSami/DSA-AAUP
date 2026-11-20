@@ -1,39 +1,42 @@
 #include <iostream>
-#include <string>
 using namespace std;
 
-long long ops = 0;
+long long mults = 0;
+long long calls = 0;
 
-long long facToRec(int n){
-    if (n==0) return 1;
-    ops++;
-    return n * facToRec(n-1);
-    
-}
+long long factorialIter(long long n) {
+    calls++;
+    long long result = 1;
 
-long long facToIter(int n){
-    long long total = 1;
-    for (int i = 1; i <= n; i++)
-    {
-        total=total*i;
-        ops++;
+    for (long long i = 2; i <= n; i++) {
+        result = result * i;
+        mults++;
     }
-    return total;
+
+    return result;
+}
+long long factorialRec(long long n) {
+    calls++;
+
+    if (n == 0) return 1; // base case
+        mults++;
+
+    return n * factorialRec(n - 1); // recursive case
+}
+long long main() {
+    long long n;
+    cout << "Enter n: ";
+    cin >> n;
+
+    mults = 0; calls = 0;
+    long long f1 = factorialIter(n);
+    cout << "Iterative: " << n << "! = " << f1
+    << ", multiplications = " << mults << ", calls = " << calls << endl;
+
+    mults = 0; calls = 0;
+    long long f2 = factorialRec(n);
+    cout << "Recursive: " << n << "! = " << f2
+    << ", multiplications = " << mults << ", calls = " << calls << endl;
     
-}
-
-int main() {
-    int n;
-    cout<<"Enter N = ";
-    cin>>n;
-    cout<<endl;
-
-    ops=0;
-    long long s1=facToRec(n);
-    cout<<s1<<" "<<n<<endl;
-
-    ops=0;
-    long long s2=facToIter(n);
-    cout<<s2<<" "<<n<<endl;
     return 0;
-}
+} 
